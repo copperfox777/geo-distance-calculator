@@ -1,9 +1,12 @@
 import React from "react";
-function History({ history,historyClickHandler }) {
+import { Button } from 'semantic-ui-react'
+function History({ history,historyClickHandler,resetHandler }) {
   console.log(history);
   return (
     <div>
-      <div className='history-title'>History</div>
+      <div className='history-title'>History</div> 
+      <Button className="bottom-padding" onClick={resetHandler}>Reset</Button>
+      
       {history.map((item, idx) => {
         console.log(item);
         return (

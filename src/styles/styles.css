@@ -66,3 +66,7 @@ h1 {
 .history-item:hover{
   background-color: #cacbcd;
 }
+
+.bottom-padding{
+  margin-bottom: 10px !important;
+}
