@@ -4,4 +4,7 @@
 2. User can submit only after all fields filled.
 3. If points 'from' and 'two' can not be defined precisely or there is a connection error, the error message will appear below. 
 4. There is an interactive history with reset button.
-5. In console type "yarn" to install dependencies then "yarn start"
+```
+Type "yarn" to install. Then "yarn start"
+Or  npm install && start
+```
