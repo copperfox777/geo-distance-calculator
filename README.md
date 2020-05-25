@@ -6,6 +6,9 @@
 4. There is an interactive history with reset button.
 ```
 Type "yarn" to install. Then "yarn start"
+<<<<<<< HEAD
 
+=======
+>>>>>>> 409d5381a68b89998683c61f6c67d89489d28bd5
 Or  npm install && start
 ```
