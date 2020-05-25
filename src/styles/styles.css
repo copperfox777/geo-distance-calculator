@@ -1,0 +1,68 @@
+h1 {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.flex-cont {
+  /* margin: 20px; */
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.flex-box {
+  margin: 5px;
+  padding: 5px;
+  flex: 0 1 auto;
+}
+
+.box-2 {
+  width:340px;
+}
+.page-header {
+  text-align: center;
+  margin: 10px;
+}
+
+.mynavbar {
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  background-color: #3298dc;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+    0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+  justify-content: center;
+  color: aliceblue;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.last-result-box {
+  padding: 20px 0;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+.error {
+  color: red;
+  margin-bottom: 10px;
+}
+
+.history-title {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.history-item {
+  cursor: pointer;
+  background-color: #e0e1e2;
+  border-radius: 4px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.history-item:hover{
+  background-color: #cacbcd;
+}
