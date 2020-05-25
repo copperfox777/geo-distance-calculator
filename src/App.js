@@ -22,7 +22,10 @@ function App() {
     let newHistory = [data,...history.slice(0,idx),...history.slice(idx+1)]
     setLastData(data);
     setHistory(newHistory);
-     
+  }
+
+  const resetHandler =() =>{
+    setHistory([]);
   }
 
   return (
@@ -34,7 +37,7 @@ function App() {
           <LastResult lastData={lastData} />
         </div>
         <div className="flex-box box-2">
-          <History history={history} historyClickHandler={historyClickHandler}/>
+          <History history={history} historyClickHandler={historyClickHandler} resetHandler={resetHandler}/>
         </div>
       </div>
     </div>
