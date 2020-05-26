@@ -4,7 +4,7 @@ import React, {useState,useEffect} from "react";
 import { Button, Form } from "semantic-ui-react";
 import {formDataToRequestUrl, allFilled, formDataHasErrors, allFalse,formInitialState, formInitialStatePreset} from '../helperFunctions/form-helpers'
 import {fetchUrls} from '../helperFunctions/fetch-service-2'
-import { ConcatenatedAddrs } from "./concatenated-arrd";
+import { ValidationHelper } from "./validation-helper";
 
 function MyForm({formSubmitHandler}) {
   const [isLoading, setIsLoading] = useState(false);
@@ -64,7 +64,7 @@ function MyForm({formSubmitHandler}) {
           </Form.Group>
           </Form>
       </div>
-        <ConcatenatedAddrs formData={formData} formErrors={formErrors}/>
+        <ValidationHelper formData={formData} formErrors={formErrors}/>
         <Button content="Submit" disabled={!canSubmit} loading={isLoading} onClick={handleSubmit}/>
       
         {/* <strong>Debug:</strong> */}
