@@ -12,6 +12,7 @@ function App() {
   const [lastData,setLastData] = useState([])
   const [modalOpen,setModalOpen] = useState(false)
   const [formData,setFormData] = useState({fields:0,serverResponse:[]})
+  const [selected,setSelected]=useState({left:0,right:0} )
   // const [serverResponse,setserverResponse] = useState([])
   // const [formData,setFormData] = useState(0)
   
@@ -51,7 +52,7 @@ function App() {
     setHistory([]);
   }
 
-  const modalSelectHandler =(payload) =>{
+  const modalSubmitHandler =(payload) =>{
     setFormData((formData)=>{
       const newformData = clone(formData);
       const leftSelection = formData.serverResponse[0].data[payload.left]
@@ -62,6 +63,14 @@ function App() {
       return newformData;
     });
     setModalOpen(false);
+    setSelected({left:0,right:0})
+  }
+
+  const modalItemClick = (e) => {
+    let sel = e.target.getAttribute('name');
+    sel = sel.split(' ');
+    sel[1]=Number(sel[1]);
+    setSelected({...selected,[sel[0]]:sel[1]})
   }
 
   return (
@@ -76,7 +85,7 @@ function App() {
           <History history={history} historyClickHandler={historyClickHandler} resetHandler={resetHistoryHandler}/>
         </div>
       </div>
-      <MyModal allprops={{formData,modalOpen,modalSelectHandler}}/> 
+      <MyModal allprops={{formData,modalOpen,modalSubmitHandler,selected,modalItemClick}}/> 
 
     </div>
   );
