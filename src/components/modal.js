@@ -7,14 +7,13 @@ function MyModal({allprops}) {
     const {dataFromForm,modalOpen,modalSelectHandler} = allprops;
     const item = dataFromForm.requestResult;
     const [selected,setSelected]=useState({left:0,right:0} )
-    
+
     const handleItemClick = (e) => {
       let sel = e.target.getAttribute('name');
       sel = sel.split(' ');
       sel[1]=Number(sel[1]);
       setSelected({...selected,[sel[0]]:sel[1]})
     }
-    console.log('dataFromForm: ', dataFromForm)
     if(!checkManyResults(dataFromForm)){
       return null;
     }

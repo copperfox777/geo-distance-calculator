@@ -2,24 +2,14 @@
 // It will return data to App.
 import React, {useState,useEffect} from "react";
 import { Button, Form } from "semantic-ui-react";
-import {formDataToRequestUrl, allFilled, formDataHasErrors, allFalse} from '../helperFunctions/form-helpers'
+import {formDataToRequestUrl, allFilled, formDataHasErrors, allFalse,formInitialState, formInitialStatePreset} from '../helperFunctions/form-helpers'
 import {fetchUrls} from '../helperFunctions/fetch-service-2'
 import { ConcatenatedAddrs } from "./concatenated-arrd";
-
 
 function MyForm({formSubmitHandler}) {
   const [isLoading, setIsLoading] = useState(false);
   const [canSubmit,setCanSubmit] = useState(false);
-  const [formData, setFormData] = useState({
-    street1: "20",
-    city1: "San",
-    stateCode1: "CA",
-    postalCode1: "94123",
-    street2: "350 5th Avenue",
-    city2: "Manhattan",
-    stateCode2: "NY",
-    postalCode2: "10018",
-  });
+  const [formData, setFormData] = useState(formInitialState);
   const [formErrors, setFormErrors] = useState({});
   
   // Here we actualy get, can form be submited or not. Everything is very transparent
@@ -74,7 +64,7 @@ function MyForm({formSubmitHandler}) {
           </Form.Group>
           </Form>
       </div>
-        <ConcatenatedAddrs formData={formData}/>
+        <ConcatenatedAddrs formData={formData} formErrors={formErrors}/>
         <Button content="Submit" disabled={!canSubmit} loading={isLoading} onClick={handleSubmit}/>
       
         {/* <strong>Debug:</strong> */}

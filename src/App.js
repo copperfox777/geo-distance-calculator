@@ -18,7 +18,6 @@ function App() {
   
   
   useEffect(() => {
-    console.log('USEEFFECT: ')
     if (dataFromForm.fields) {
       let errors = getErrors(dataFromForm)
       if (errors) {

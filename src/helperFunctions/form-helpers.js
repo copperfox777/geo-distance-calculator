@@ -1,3 +1,25 @@
+export const formInitialState={
+  street1: "",
+  city1: "",
+  stateCode1: "",
+  postalCode1: "",
+  street2: "",
+  city2: "",
+  stateCode2: "",
+  postalCode2: "",
+}
+
+export const formInitialStatePreset={
+  street1: "20",
+  city1: "San",
+  stateCode1: "CA",
+  postalCode1: "94123",
+  street2: "350 5th Avenue",
+  city2: "Manhattan",
+  stateCode2: "NY",
+  postalCode2: "10018",
+}
+
 function validatePostalCode(value) {
   let res = /^\d{5}$|^\d{5}-\d{4}$/.test(value)
   return !res;

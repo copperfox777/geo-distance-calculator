@@ -9,6 +9,7 @@ function History({ history,historyClickHandler,resetHandler }) {
         return (
           <div className='history-item' key={idx} onClick={()=>historyClickHandler(idx) }>
             <div>{item.from}</div>
+            <hr/>
             <div>{item.to}</div>
           </div>
         )

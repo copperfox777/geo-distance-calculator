@@ -3,7 +3,6 @@ const _apiBase2 = '&format=json'
 
 export function fetchUrls(urls) {
   let urlsToRequest = urls.map((item)=>`${_apiBase1}${item}${_apiBase2}`)
-  console.log('urlsToRequest', urlsToRequest)
   return Promise.all(
     urlsToRequest.map((url) =>
       fetch(url)
