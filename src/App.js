@@ -11,33 +11,33 @@ function App() {
   const [history,setHistory] = useState([])
   const [lastData,setLastData] = useState([])
   const [modalOpen,setModalOpen] = useState(false)
-  const [dataFromForm,setDataFromForm] = useState({fields:0,serverResponse:[]})
+  const [formData,setFormData] = useState({fields:0,serverResponse:[]})
   // const [serverResponse,setserverResponse] = useState([])
   // const [formData,setFormData] = useState(0)
   
   
   
   useEffect(() => {
-    if (dataFromForm.fields) {
-      let errors = getErrors(dataFromForm)
+    if (formData.fields) {
+      let errors = getErrors(formData)
       if (errors) {
         setLastData(errors)
       } else {
-        if (checkManyResults(dataFromForm)) {
+        if (checkManyResults(formData)) {
           setModalOpen(true)
         } else {
-          const goodResult = processData(dataFromForm)
+          const goodResult = processData(formData)
           setHistory((h) => [goodResult, ...h])
           setLastData(goodResult)
         }
       }
     }
-  }, [dataFromForm])
+  }, [formData])
 
 
   // HANDLERS 
   const formSubmitHandler = (formData,serverResponse) =>{
-      setDataFromForm({fields:formData,serverResponse})
+      setFormData({fields:formData,serverResponse})
   }
 
   const historyClickHandler = (idx) =>{
@@ -52,14 +52,14 @@ function App() {
   }
 
   const modalSelectHandler =(payload) =>{
-    setDataFromForm((dataFromForm)=>{
-      const newDataFromForm = clone(dataFromForm);
-      const leftSelection = dataFromForm.serverResponse[0].data[payload.left]
-      const rightSelection = dataFromForm.serverResponse[1].data[payload.right]
+    setFormData((formData)=>{
+      const newformData = clone(formData);
+      const leftSelection = formData.serverResponse[0].data[payload.left]
+      const rightSelection = formData.serverResponse[1].data[payload.right]
       // console.log(leftSelection,rightSelection);
-      newDataFromForm.serverResponse[0].data=[leftSelection];
-      newDataFromForm.serverResponse[1].data=[rightSelection];
-      return newDataFromForm;
+      newformData.serverResponse[0].data=[leftSelection];
+      newformData.serverResponse[1].data=[rightSelection];
+      return newformData;
     });
     setModalOpen(false);
   }
@@ -76,7 +76,7 @@ function App() {
           <History history={history} historyClickHandler={historyClickHandler} resetHandler={resetHistoryHandler}/>
         </div>
       </div>
-      <MyModal allprops={{dataFromForm,modalOpen,modalSelectHandler}}/> 
+      <MyModal allprops={{formData,modalOpen,modalSelectHandler}}/> 
 
     </div>
   );

@@ -4,8 +4,8 @@ import { checkManyResults } from '../helperFunctions/distance-calc'
 
 
 function MyModal({allprops}) {
-    const {dataFromForm,modalOpen,modalSelectHandler} = allprops;
-    const item = dataFromForm.serverResponse;
+    const {formData,modalOpen,modalSelectHandler} = allprops;
+    const item = formData.serverResponse;
     const [selected,setSelected]=useState({left:0,right:0} )
 
     const handleItemClick = (e) => {
@@ -14,7 +14,7 @@ function MyModal({allprops}) {
       sel[1]=Number(sel[1]);
       setSelected({...selected,[sel[0]]:sel[1]})
     }
-    if(!checkManyResults(dataFromForm)){
+    if(!checkManyResults(formData)){
       return null;
     }
     else {

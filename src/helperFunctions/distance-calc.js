@@ -24,8 +24,8 @@ function getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
 //   return { fromStr, toStr };
 // }
 
-export function processResult(dataFromForm) {
-  const {serverResponse} = dataFromForm;
+export function processResult(formData) {
+  const {serverResponse} = formData;
     const lon1=serverResponse[0].data[0].lon;
     const lat1=serverResponse[0].data[0].lat;
     const lon2=serverResponse[1].data[0].lon;
@@ -40,16 +40,16 @@ export function processResult(dataFromForm) {
   
 }
 
-export function checkManyResults(dataFromForm){
-  return dataFromForm.serverResponse.some((item)=>item.data.length > 1 )
+export function checkManyResults(formData){
+  return formData.serverResponse.some((item)=>item.data.length > 1 )
 }
 
-export function checkNoResults(dataFromForm){
-  return dataFromForm.serverResponse.some((item)=>item.data.length === 0 )
+export function checkNoResults(formData){
+  return formData.serverResponse.some((item)=>item.data.length === 0 )
 }
 
-export function getErrors(dataFromForm) {
-  const {serverResponse} = dataFromForm;
+export function getErrors(formData) {
+  const {serverResponse} = formData;
   let errors = [];
   serverResponse.forEach((element, idx) => {
     if (element.hasOwnProperty("error")) {
