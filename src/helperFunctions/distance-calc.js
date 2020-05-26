@@ -25,15 +25,15 @@ function getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
 // }
 
 export function processResult(dataFromForm) {
-  const {requestResult} = dataFromForm;
-    const lon1=requestResult[0].data[0].lon;
-    const lat1=requestResult[0].data[0].lat;
-    const lon2=requestResult[1].data[0].lon;
-    const lat2=requestResult[1].data[0].lat;
+  const {serverResponse} = dataFromForm;
+    const lon1=serverResponse[0].data[0].lon;
+    const lat1=serverResponse[0].data[0].lat;
+    const lon2=serverResponse[1].data[0].lon;
+    const lat2=serverResponse[1].data[0].lat;
     const distance = getDistanceFromLatLonInKm(lat1,lon1,lat2,lon2);
     // const { fromStr, toStr } = formDataToStrings(fields);
-    const from = requestResult[0].data[0].display_name;
-    const to =   requestResult[1].data[0].display_name;
+    const from = serverResponse[0].data[0].display_name;
+    const to =   serverResponse[1].data[0].display_name;
     
     let result={from,to,distance}
     return result;
@@ -41,17 +41,17 @@ export function processResult(dataFromForm) {
 }
 
 export function checkManyResults(dataFromForm){
-  return dataFromForm.requestResult.some((item)=>item.data.length > 1 )
+  return dataFromForm.serverResponse.some((item)=>item.data.length > 1 )
 }
 
 export function checkNoResults(dataFromForm){
-  return dataFromForm.requestResult.some((item)=>item.data.length === 0 )
+  return dataFromForm.serverResponse.some((item)=>item.data.length === 0 )
 }
 
 export function getErrors(dataFromForm) {
-  const {requestResult} = dataFromForm;
+  const {serverResponse} = dataFromForm;
   let errors = [];
-  requestResult.forEach((element, idx) => {
+  serverResponse.forEach((element, idx) => {
     if (element.hasOwnProperty("error")) {
       errors.push(
         "Failed to fetch. Maybe you have problems with internet connection"

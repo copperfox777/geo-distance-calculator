@@ -6,7 +6,7 @@ function Nodata() {
   )
 }
 
-export function ConcatenatedAddrs(props) {
+export function ValidationHelper(props) {
   const f = props.formData;
   const e = props.formErrors;
   return (
