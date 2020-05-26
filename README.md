@@ -15,3 +15,6 @@ Some values for testing:
 - 350 5th Avenue, Manhattan, NY 10018
 - 201 Fort Mason, San Francisco, CA 94123
 - 3010 Locust St, St. Louis, MO 63103
+- 5400 S Rainbow Blvd, Las Vegas, NV 89118   (many search results)
+- 20, San, CA 94123                          (many search results)
+- 201 Fort Ma1son, San Francisco, CA 94123   (no search results)

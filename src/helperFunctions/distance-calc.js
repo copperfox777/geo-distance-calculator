@@ -24,8 +24,30 @@ function formDataToStrings(formData) {
   return { fromStr, toStr };
 }
 
-export function processResult(formData, requestResult) {
- 
+export function processResult(dataFromForm) {
+  const {fields, requestResult} = dataFromForm;
+    const lon1=requestResult[0].data[0].lon;
+    const lat1=requestResult[0].data[0].lat;
+    const lon2=requestResult[1].data[0].lon;
+    const lat2=requestResult[1].data[0].lat;
+    const distance = getDistanceFromLatLonInKm(lat1,lon1,lat2,lon2);
+    const { fromStr, toStr } = formDataToStrings(fields);
+    
+    let result={from:fromStr,to:toStr,distance:distance}
+    return result;
+  
+}
+
+export function checkManyResults(dataFromForm){
+  return dataFromForm.requestResult.some((item)=>item.data.length > 1 )
+}
+
+export function checkNoResults(dataFromForm){
+  return dataFromForm.requestResult.some((item)=>item.data.length === 0 )
+}
+
+export function getErrors(dataFromForm) {
+  const {requestResult} = dataFromForm;
   let errors = [];
   requestResult.forEach((element, idx) => {
     if (element.hasOwnProperty("error")) {
@@ -36,24 +58,10 @@ export function processResult(formData, requestResult) {
     if (element.data.length === 0) {
       errors.push(`Failed to find location ${idx ? "TO" : "FROM"}`);
     }
-    if (element.data.length > 1) {
-      errors.push(`More then one results for location ${idx ? "TO" : "FROM"}`);
-    }
   });
 
   if (errors.length > 0) {
     return {errors};
-  } else {
-    const lon1=requestResult[0].data[0].lon;
-    const lat1=requestResult[0].data[0].lat;
-    const lon2=requestResult[1].data[0].lon;
-    const lat2=requestResult[1].data[0].lat;
-    const distance = getDistanceFromLatLonInKm(lat1,lon1,lat2,lon2);
-    const { fromStr, toStr } = formDataToStrings(formData);
-    
-    let result={from:fromStr,to:toStr,distance:distance}
-    return result;
-  }
-
-
+  } 
+  return false;
 }

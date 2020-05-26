@@ -1,6 +1,8 @@
 import React from 'react';
+
+// THIS COMPONENT HANDELS GOOD RESULT AND ERRORS RESULT
+
 function LastResult({lastData}) {
- 
   let distStyle;
   if(lastData.hasOwnProperty('distance')) {
     if(lastData.distance  > 100 ) distStyle={color:'orange'}

@@ -11,8 +11,8 @@ function MyForm({formSubmitHandler}) {
   const [isLoading, setIsLoading] = useState(false);
   const [canSubmit,setCanSubmit] = useState(false);
   const [formData, setFormData] = useState({
-    street1: "201 Fort Mason",
-    city1: "San Francisco",
+    street1: "20",
+    city1: "San",
     stateCode1: "CA",
     postalCode1: "94123",
     street2: "350 5th Avenue",
@@ -22,7 +22,7 @@ function MyForm({formSubmitHandler}) {
   });
   const [formErrors, setFormErrors] = useState({});
   
-  //Here we actualy calculate form side effects on data change
+  //Here we actualy decide, can form be submited or not. Everything is very transparent
   useEffect(() => {
     const formFilled = allFilled(formData);
     const formErrors = formDataHasErrors(formData);
@@ -32,7 +32,7 @@ function MyForm({formSubmitHandler}) {
     setFormErrors(formErrors);
   }, [formData]);
 
-
+  // HANDLERS
   const handleChange = (e, { name, value }) => {
     if(name.includes('state')){
       value = value.toUpperCase()
@@ -40,10 +40,7 @@ function MyForm({formSubmitHandler}) {
     setFormData({...formData, [name]: value })
   }
 
-
   const handleSubmit = () =>{
-    
-      // THE MAIN PART - REQUEST AND RESULT
       const urls = formDataToRequestUrl(formData);
       setIsLoading(true);
       fetchUrls(urls).then((result)=>{
