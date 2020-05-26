@@ -1,10 +1,11 @@
 import React,{useState,useEffect} from 'react'
+import clone from 'lodash/clone';
 import MyForm from './components/form'
 import LastResult from './components/last-result'
 import History from './components/history'
 import Navbar from "./components/navbar"
-import { processResult as processData, checkManyResults, getErrors } from './helperFunctions/distance-calc'
 import MyModal from './components/modal'
+import { processResult as processData, checkManyResults, getErrors } from './helperFunctions/distance-calc'
 
 function App() {
   const [history,setHistory] = useState([])
@@ -17,7 +18,7 @@ function App() {
   
   
   useEffect(() => {
-    console.log(dataFromForm)
+    console.log('USEEFFECT: ')
     if (dataFromForm.fields) {
       let errors = getErrors(dataFromForm)
       if (errors) {
@@ -51,8 +52,17 @@ function App() {
     setHistory([]);
   }
 
-  const modalHandler =(payload) =>{
-    console.log('payload', payload)
+  const modalSelectHandler =(payload) =>{
+    setDataFromForm((dataFromForm)=>{
+      const newDataFromForm = clone(dataFromForm);
+      const leftSelection = dataFromForm.requestResult[0].data[payload.left]
+      const rightSelection = dataFromForm.requestResult[1].data[payload.right]
+      // console.log(leftSelection,rightSelection);
+      newDataFromForm.requestResult[0].data=[leftSelection];
+      newDataFromForm.requestResult[1].data=[rightSelection];
+      return newDataFromForm;
+    });
+    setModalOpen(false);
   }
 
   return (
@@ -67,7 +77,7 @@ function App() {
           <History history={history} historyClickHandler={historyClickHandler} resetHandler={resetHistoryHandler}/>
         </div>
       </div>
-      <MyModal dataFromForm={dataFromForm} modalOpen= {modalOpen} modalHandler={modalHandler}/> 
+      <MyModal allprops={{dataFromForm,modalOpen,modalSelectHandler}}/> 
 
     </div>
   );

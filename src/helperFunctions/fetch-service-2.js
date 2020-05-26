@@ -10,7 +10,7 @@ export function fetchUrls(urls) {
         .then(checkStatus)
         .then(parseJSON)
         .then(data => ({ data, url }))
-        .catch(error => ({ error, url }))
+        .catch(error => ({data:[], error, url }))
     )
   )
 }

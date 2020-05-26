@@ -3,28 +3,25 @@ import { Button, Header, Icon, Modal } from 'semantic-ui-react'
 import { checkManyResults } from '../helperFunctions/distance-calc'
 
 
-function MyModal({dataFromForm,modalOpen,modalHandler}) {
+function MyModal({allprops}) {
+    const {dataFromForm,modalOpen,modalSelectHandler} = allprops;
     const item = dataFromForm.requestResult;
     const [selected,setSelected]=useState({left:0,right:0} )
-
+    
     const handleItemClick = (e) => {
       let sel = e.target.getAttribute('name');
       sel = sel.split(' ');
       sel[1]=Number(sel[1]);
       setSelected({...selected,[sel[0]]:sel[1]})
     }
-
+    console.log('dataFromForm: ', dataFromForm)
     if(!checkManyResults(dataFromForm)){
       return null;
     }
-
+    else {
     return (
-      <Modal
-        // trigger={<Button onClick={modalHandler}>Show Modal</Button>}
-        open={modalOpen}
-        onClose={modalHandler}
-        size="large">
-        <Header icon="browser" content="Many search results. Select exact point." />
+      <Modal open={modalOpen} onClose={()=>modalSelectHandler(selected)} size="large">
+        <Header icon="browser" content="Many search results. Select exact location." />
         <Modal.Content>
           <div className="flex-cont">
             <div className="flex-box modal-box-1">
@@ -47,12 +44,12 @@ function MyModal({dataFromForm,modalOpen,modalHandler}) {
           </div>
         </Modal.Content>
         <Modal.Actions>
-          <Button color="green" onClick={()=>modalHandler(selected)} inverted>
+          <Button color="green" onClick={()=>modalSelectHandler(selected)} inverted>
             <Icon name="checkmark" /> Done
           </Button>
         </Modal.Actions>
       </Modal>
-    )
+    )}
 
 }
 export default React.memo(MyModal);

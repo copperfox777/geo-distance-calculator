@@ -17,23 +17,25 @@ function getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
 }
 
 
-function formDataToStrings(formData) {
-  const f = formData;
-  let fromStr = `FROM: ${f.street1}, ${f.city1}, ${f.stateCode1} ${f.postalCode1}`;
-  let toStr = `  TO: ${f.street2}, ${f.city2}, ${f.stateCode2} ${f.postalCode2}`;
-  return { fromStr, toStr };
-}
+// function formDataToStrings(formData) {
+//   const f = formData;
+//   let fromStr = `FROM: ${f.street1}, ${f.city1}, ${f.stateCode1} ${f.postalCode1}`;
+//   let toStr = `  TO: ${f.street2}, ${f.city2}, ${f.stateCode2} ${f.postalCode2}`;
+//   return { fromStr, toStr };
+// }
 
 export function processResult(dataFromForm) {
-  const {fields, requestResult} = dataFromForm;
+  const {requestResult} = dataFromForm;
     const lon1=requestResult[0].data[0].lon;
     const lat1=requestResult[0].data[0].lat;
     const lon2=requestResult[1].data[0].lon;
     const lat2=requestResult[1].data[0].lat;
     const distance = getDistanceFromLatLonInKm(lat1,lon1,lat2,lon2);
-    const { fromStr, toStr } = formDataToStrings(fields);
+    // const { fromStr, toStr } = formDataToStrings(fields);
+    const from = requestResult[0].data[0].display_name;
+    const to =   requestResult[1].data[0].display_name;
     
-    let result={from:fromStr,to:toStr,distance:distance}
+    let result={from,to,distance}
     return result;
   
 }

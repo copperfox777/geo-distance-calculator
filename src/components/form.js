@@ -22,7 +22,9 @@ function MyForm({formSubmitHandler}) {
   });
   const [formErrors, setFormErrors] = useState({});
   
-  //Here we actualy decide, can form be submited or not. Everything is very transparent
+  // Here we actualy get, can form be submited or not. Everything is very transparent
+  // I could make it in first handler. Just calc new formdata and get errors from there, but i decided
+  // to make that way
   useEffect(() => {
     const formFilled = allFilled(formData);
     const formErrors = formDataHasErrors(formData);
