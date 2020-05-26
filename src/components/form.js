@@ -9,7 +9,7 @@ import { ValidationHelper } from "./validation-helper";
 function MyForm({formSubmitHandler}) {
   const [isLoading, setIsLoading] = useState(false);
   const [canSubmit,setCanSubmit] = useState(false);
-  const [formData, setFormData] = useState(formInitialState);
+  const [formData, setFormData] = useState(formInitialStatePreset);
   const [formErrors, setFormErrors] = useState({});
   
   // Here we actualy get, can form be submited or not. Everything is very transparent
