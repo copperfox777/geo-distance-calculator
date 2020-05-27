@@ -4,11 +4,16 @@
 2. User can submit only after all fields filled.
 3. If points 'from' and 'two' can not be defined precisely or there is a connection error, the error message will appear below. 
 4. There is an interactive history with reset button.
+
+How to start:
+1. Download project
+2.
 ```
 Type "yarn" to install. Then "yarn start"
 
 Or  npm install && start
 ```
+
 Some values for testing:
 - 2321 Talavera Dr, San Ramon, CA 94583
 - 1212 Stanford Dr NE, Albuquerque, NM 87106

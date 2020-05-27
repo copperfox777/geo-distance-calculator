@@ -2,26 +2,24 @@
 // It will return data to App.
 import React, {useState,useEffect} from "react";
 import { Button, Form } from "semantic-ui-react";
-import {formDataToRequestUrl, allFilled, formDataHasErrors, allFalse,formInitialState, formInitialStatePreset} from '../helperFunctions/form-helpers'
+import {formDataToRequestUrl, allFilled, formDataHasErrors, allFalse,formInitialState, validateField, formInitialStatePreset} from '../helperFunctions/form-helpers'
 import {fetchUrls} from '../helperFunctions/fetch-service-2'
 import { ValidationHelper } from "./validation-helper";
 
 function MyForm({formSubmitHandler}) {
   const [isLoading, setIsLoading] = useState(false);
   const [canSubmit,setCanSubmit] = useState(false);
-  const [formData, setFormData] = useState(formInitialStatePreset);
+  const [formData, setFormData] = useState(formInitialState);
+  // const [formData, setFormData] = useState(formInitialStatePreset);
   const [formErrors, setFormErrors] = useState({});
   
-  // Here we actualy get, can form be submited or not. Everything is very transparent
-  // I could make it in first handler. Just calc new formdata and get errors from there, but i decided
-  // to make that way
   useEffect(() => {
     const formFilled = allFilled(formData);
     const formErrors = formDataHasErrors(formData);
     const formIsValid = allFalse(formErrors);
 
     formFilled && formIsValid ? setCanSubmit(true) : setCanSubmit(false);
-    setFormErrors(formErrors);
+    // setFormErrors(formErrors);
   }, [formData]);
 
   // HANDLERS
@@ -29,7 +27,10 @@ function MyForm({formSubmitHandler}) {
     if(name.includes('state')){
       value = value.toUpperCase()
     }
+    const validationRes = validateField(name,value)
+    console.log('validationRes: ', validationRes)
     setFormData({...formData, [name]: value })
+    setFormErrors({...formErrors,[name]:validationRes})
   }
 
   const handleSubmit = () =>{

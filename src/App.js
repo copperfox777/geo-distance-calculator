@@ -13,10 +13,6 @@ function App() {
   const [modalOpen,setModalOpen] = useState(false)
   const [formData,setFormData] = useState({fields:0,serverResponse:[]})
   const [selected,setSelected]=useState({left:0,right:0} )
-  // const [serverResponse,setserverResponse] = useState([])
-  // const [formData,setFormData] = useState(0)
-  
-  
   
   useEffect(() => {
     if (formData.fields) {
@@ -86,7 +82,6 @@ function App() {
         </div>
       </div>
       <MyModal allprops={{formData,modalOpen,modalSubmitHandler,selected,modalItemClick}}/> 
-
     </div>
   );
 }

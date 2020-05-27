@@ -37,6 +37,22 @@ function validateStreetAndCity(value) {
   return false;
  }
 
+export function validateField(name, value) {
+  console.log('name,value: ', name,value)
+  if (name.includes("city") || name.includes("street")) {
+    if (value.length > 1) {
+      return false
+    } else {
+      return true
+    }
+  } else if(name.includes('state')){
+    return validateStateCode(value)
+  } else if(name.includes('postal')){
+    return validatePostalCode(value)
+  }
+  
+}
+
 export function formDataToRequestUrl(formData) {
   const f=formData;
   let url1=`${f.street1}, ${f.city1}, ${f.stateCode1} ${f.postalCode1}`.split(' ').join('+');
